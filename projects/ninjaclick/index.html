@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilentClick™ - Revolutionary Silent Mouse Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        /* All our custom CSS from before goes here */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1F2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7C3AED;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #4B5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #7C3AED;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: #7C3AED;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #6D28D9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.2);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #7C3AED, #5B21B6);
+            padding: 8rem 0 4rem;
+            color: white;
+            text-align: center;
+        }
+
+        .features {
+            padding: 5rem 0;
+            background: #F9FAFB;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .price-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .price-card.popular {
+            border: 2px solid #7C3AED;
+            transform: scale(1.05);
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-card.popular:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #7C3AED;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .check-list {
+            list-style: none;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: #10B981;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #7C3AED, #5B21B6);
+            padding: 4rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .footer {
+            background: #1F2937;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .price-card.popular {
+                transform: scale(1);
+            }
+            
+            .price-card.popular:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+<!-- Updated Navigation -->
+<nav class="nav">
+    <div class="container nav-container">
+        <div class="flex items-center">
+            <a href="/" class="home-link text-gray-600 hover:text-purple-600 mr-8">
+                <span>←</span> Back to Portfolio
+            </a>
+            <div class="nav-logo">🤫 SilentClick™</div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-links hidden md:flex items-center space-x-6">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="tools.html" class="nav-link">Tools</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <button onclick="openCheckout('pro')" class="btn btn-primary">Get Started</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden">
+        <div class="py-2 space-y-1">
+            <a href="#features" class="block px-4 py-2 text-gray-600 hover:bg-purple-50">Features</a>
+            <a href="#pricing" class="block px-4 py-2 text-gray-600 hover:bg-purple-50">Pricing</a>
+            <a href="tools.html" class="block px-4 py-2 text-gray-600 hover:bg-purple-50">Tools</a>
+            <a href="#faq" class="block px-4 py-2 text-gray-600 hover:bg-purple-50">FAQ</a>
+            <div class="px-4 py-2">
+                <button onclick="openCheckout('pro')" class="btn btn-primary w-full">Get Started</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Mouse Just Got a Silencer</h1>
+            <p class="text-xl mb-8 opacity-90">Because nobody needs to hear you rage-clicking at 3 AM</p>
+            <button onclick="openCheckout('pro')" class="bg-purple-600 text-white py-3 px-6 rounded-lg text-lg hover:bg-purple-700 transition-colors">
+                Start Your Silent Journey
+              </button>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Silent Click?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <div class="text-4xl mb-4 text-center">🤫</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center">Ultra-Silent Technology</h3>
+                    <p class="text-gray-600 text-center">Experience gaming without disturbing anyone around you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="text-4xl mb-4 text-center">📊</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center">Click Analytics</h3>
+                    <p class="text-gray-600 text-center">Track your usage and optimize your silent clicking habits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="text-4xl mb-4 text-center">⚡</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center">Lightning Fast</h3>
+                    <p class="text-gray-600 text-center">Zero latency. Just pure, silent performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Pricing start -->
+<section id="pricing" class="pricing py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Choose Your Silence Level</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Basic Plan -->
+            <div class="price-card text-center p-8 rounded-lg border shadow-lg hover:shadow-xl transition-shadow">
+                <h3 class="text-2xl font-bold mb-4">Ninja Trainee</h3>
+                <div class="text-purple-600 text-4xl font-bold mb-6">$12.99<span class="text-lg">/mo</span></div>
+                <ul class="check-list space-y-3 mb-8">
+                    <li class="flex items-center justify-center">
+                        <span>12,000 silent clicks</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Basic stealth support</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Click tracking</span>
+                    </li>
+                </ul>
+                <button onclick="openCheckout('basic')" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Basic
+                </button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="price-card popular text-center p-8 rounded-lg border shadow-lg hover:shadow-xl transition-shadow relative bg-purple-50">
+                <span class="popular-badge absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm">Most Popular</span>
+                <h3 class="text-2xl font-bold mb-4">Stealth Master</h3>
+                <div class="text-purple-600 text-4xl font-bold mb-6">$19.99<span class="text-lg">/mo</span></div>
+                <ul class="check-list space-y-3 mb-8">
+                    <li class="flex items-center justify-center">
+                        <span>25,000 silent clicks</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Priority ninja support</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Advanced analytics</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Click meditation sessions</span>
+                    </li>
+                </ul>
+                <button onclick="openCheckout('pro')" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Pro
+                </button>
+            </div>
+
+            <!-- Elite Plan -->
+            <div class="price-card text-center p-8 rounded-lg border shadow-lg hover:shadow-xl transition-shadow">
+                <h3 class="text-2xl font-bold mb-4">Silent Assassin</h3>
+                <div class="text-purple-600 text-4xl font-bold mb-6">$29.99<span class="text-lg">/mo</span></div>
+                <ul class="check-list space-y-3 mb-8">
+                    <li class="flex items-center justify-center">
+                        <span>Unlimited silent clicks</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>24/7 stealth support</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Premium analytics</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Click meditation sessions</span>
+                    </li>
+                    <li class="flex items-center justify-center">
+                        <span>Custom silence profiles</span>
+                    </li>
+                </ul>
+                <button onclick="openCheckout('elite')" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Elite
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.price-card {
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+}
+
+.check-list {
+    list-style: none;
+    padding: 0;
+}
+
+.popular {
+    border-color: #9333ea;
+}
+</style>
+<!-- Pricing end -->
+
+<!-- Achievement Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Unlock Silent Achievements</h2>
+        
+<!-- Updated Tab Section with Indicators -->
+<div class="relative mb-8">
+    <!-- Left Indicator -->
+    <button class="scroll-indicator left hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-2 z-10 hover:bg-gray-50">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+
+    <div class="achievement-tabs flex overflow-x-auto scrollbar-hide pb-4" style="-webkit-overflow-scrolling: touch;">
+        <div class="flex gap-4 mx-auto" id="tabsContainer">
+            <!-- Original Tabs -->
+            <button class="achievement-tab active flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="ninja">
+                <span class="text-2xl mb-2">🥷</span>
+                <span class="font-medium whitespace-nowrap">Ninja Skills</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="social">
+                <span class="text-2xl mb-2">🤝</span>
+                <span class="font-medium whitespace-nowrap">Social Stealth</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="legendary">
+                <span class="text-2xl mb-2">👑</span>
+                <span class="font-medium whitespace-nowrap">Legendary</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="specialist">
+                <span class="text-2xl mb-2">🎯</span>
+                <span class="font-medium whitespace-nowrap">Specialist</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <!-- Duplicate Set for Infinite Scroll -->
+            <button class="achievement-tab clone flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="ninja">
+                <span class="text-2xl mb-2">🥷</span>
+                <span class="font-medium whitespace-nowrap">Ninja Skills</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab clone flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="social">
+                <span class="text-2xl mb-2">🤝</span>
+                <span class="font-medium whitespace-nowrap">Social Stealth</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab clone flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="legendary">
+                <span class="text-2xl mb-2">👑</span>
+                <span class="font-medium whitespace-nowrap">Legendary</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+            <button class="achievement-tab clone flex-shrink-0 flex flex-col items-center p-4 rounded-lg" data-tab="specialist">
+                <span class="text-2xl mb-2">🎯</span>
+                <span class="font-medium whitespace-nowrap">Specialist</span>
+                <span class="text-xs text-gray-500">view cards</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Right Indicator -->
+    <button class="scroll-indicator right hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-2 z-10 hover:bg-gray-50">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+        <!-- Achievement Content Sections -->
+        
+        <!-- Ninja Skills Content -->
+        <div id="ninja-content" class="achievement-content active mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Library Ninja -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">🤫</div>
+                    <h3 class="font-semibold">Library Ninja</h3>
+                    <p class="text-sm text-gray-600 mb-4">1,000 clicks without waking up a single studying student</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Progress:</span>
+                            <span class="text-purple-600">783/1000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Rarity:</span>
+                            <span class="text-purple-600">Top 12%</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Shadow Walker -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">🌙</div>
+                    <h3 class="font-semibold">Shadow Walker</h3>
+                    <p class="text-sm text-gray-600 mb-4">Complete 10 night missions without detection</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Missions:</span>
+                            <span class="text-purple-600">8/10</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Stealth Level:</span>
+                            <span class="text-purple-600">Expert</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Silent Storm -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">🌪️</div>
+                    <h3 class="font-semibold">Silent Storm</h3>
+                    <p class="text-sm text-gray-600 mb-4">10,000 clicks in one hour, all in perfect silence</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Best Rate:</span>
+                            <span class="text-purple-600">8,742/hr</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Finger Health:</span>
+                            <span class="text-purple-600">Sore</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Ninja Locked -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow opacity-75">
+                    <div class="text-3xl mb-2">🔒</div>
+                    <h3 class="font-semibold">Ghost Protocol</h3>
+                    <p class="text-sm text-gray-600 mb-4">??? Complete all missions without ever being detected ???</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Status:</span>
+                            <span class="text-red-600">Locked</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Progress:</span>
+                            <span class="text-purple-600">2/3 Complete</span>
+                        </div>
+                    </div>
+                    <div class="block text-center text-sm text-gray-400 mt-4 pt-4 border-t">
+                        Achievement Locked
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Stealth Content -->
+        <div id="social-content" class="achievement-content hidden mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Meeting Master -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">👔</div>
+                    <h3 class="font-semibold">Meeting Multitasker</h3>
+                    <p class="text-sm text-gray-600 mb-4">Reached a new high score during a quarterly review</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Meetings Survived:</span>
+                            <span class="text-purple-600">42/50</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Boss Suspicion:</span>
+                            <span class="text-purple-600">Minimal</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Coffee Shop Ninja -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">☕</div>
+                    <h3 class="font-semibold">Coffee Shop Ninja</h3>
+                    <p class="text-sm text-gray-600 mb-4">Successfully game for 8 hours while pretending to work on your novel</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Coffees Bought:</span>
+                            <span class="text-purple-600">12</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Words Written:</span>
+                            <span class="text-purple-600">0</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Professional Actor -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-2">🎭</div>
+                    <h3 class="font-semibold">Professional Actor</h3>
+                    <p class="text-sm text-gray-600 mb-4">Master the art of fake typing during important Zoom calls</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Acting Level:</span>
+                            <span class="text-purple-600">Oscar Worthy</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>People Fooled:</span>
+                            <span class="text-purple-600">Everyone</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                        View Details →
+                    </a>
+                </div>
+
+                <!-- Social Locked -->
+                <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow opacity-75">
+                    <div class="text-3xl mb-2">🔒</div>
+                    <h3 class="font-semibold">The Perfect Alibi</h3>
+                    <p class="text-sm text-gray-600 mb-4">??? Master the art of looking productive while gaming ???</p>
+                    <div class="text-sm text-gray-500 space-y-2">
+                        <div class="flex justify-between">
+                            <span>Status:</span>
+                            <span class="text-red-600">Locked</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Productivity:</span>
+                            <span class="text-purple-600">-42%</span>
+                        </div>
+                    </div>
+                    <div class="block text-center text-sm text-gray-400 mt-4 pt-4 border-t">
+                        Achievement Locked
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Legendary Content -->
+<div id="legendary-content" class="achievement-content hidden mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- The Invisible Gamer -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">👻</div>
+            <h3 class="font-semibold">The Invisible Gamer</h3>
+            <p class="text-sm text-gray-600 mb-4">Play for 24 hours straight without anyone noticing</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Longest Streak:</span>
+                    <span class="text-purple-600">22.5 hrs</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Snacks Smuggled:</span>
+                    <span class="text-purple-600">47</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- Click Whisperer -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">🤫</div>
+            <h3 class="font-semibold">Click Whisperer Supreme</h3>
+            <p class="text-sm text-gray-600 mb-4">1 million clicks without a single sound</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Silent Clicks:</span>
+                    <span class="text-purple-600">927,354</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Noise Level:</span>
+                    <span class="text-purple-600">-1 dB</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- The Untouchable -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">🏆</div>
+            <h3 class="font-semibold">The Untouchable</h3>
+            <p class="text-sm text-gray-600 mb-4">Complete all stealth missions without a single detection</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Global Rank:</span>
+                    <span class="text-purple-600">#1</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Detection Rate:</span>
+                    <span class="text-purple-600">0.00%</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- Legendary Locked -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow opacity-75">
+            <div class="text-3xl mb-2">🔒</div>
+            <h3 class="font-semibold">The Chosen One</h3>
+            <p class="text-sm text-gray-600 mb-4">??? The prophecy speaks of one who will click in absolute silence ???</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Status:</span>
+                    <span class="text-red-600">Mythical</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Prophecy:</span>
+                    <span class="text-purple-600">Pending</span>
+                </div>
+            </div>
+            <div class="block text-center text-sm text-gray-400 mt-4 pt-4 border-t">
+                Achievement Locked
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Specialist Content -->
+<div id="specialist-content" class="achievement-content hidden mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- ASMR Master -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">🎧</div>
+            <h3 class="font-semibold">ASMR Master</h3>
+            <p class="text-sm text-gray-600 mb-4">Your clicks are so quiet, they're used in sleep meditation videos</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Subscribers:</span>
+                    <span class="text-purple-600">1.2M</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>People Asleep:</span>
+                    <span class="text-purple-600">All of them</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- Tech Support -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">💻</div>
+            <h3 class="font-semibold">Tech Support Ninja</h3>
+            <p class="text-sm text-gray-600 mb-4">Fix someone's PC while gaming without them knowing</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>PCs Fixed:</span>
+                    <span class="text-purple-600">42</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Games Won:</span>
+                    <span class="text-purple-600">41</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- Stealth Streamer -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">🎮</div>
+            <h3 class="font-semibold">Silent Streamer</h3>
+            <p class="text-sm text-gray-600 mb-4">Stream for 4 hours with viewers thinking your mouse is broken</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Chat Messages:</span>
+                    <span class="text-purple-600">"Mouse???"</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Trolled:</span>
+                    <span class="text-purple-600">Everyone</span>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-sm text-purple-600 hover:text-purple-700 mt-4 pt-4 border-t">
+                View Details →
+            </a>
+        </div>
+
+        <!-- Specialist Locked -->
+        <div class="achievement-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow opacity-75">
+            <div class="text-3xl mb-2">🔒</div>
+            <h3 class="font-semibold">The Silent Conspiracy</h3>
+            <p class="text-sm text-gray-600 mb-4">??? Convert your entire gaming group to silent clicking ???</p>
+            <div class="text-sm text-gray-500 space-y-2">
+                <div class="flex justify-between">
+                    <span>Converts:</span>
+                    <span class="text-purple-600">4/5</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Dave Status:</span>
+                    <span class="text-purple-600">Still Loud</span>
+                </div>
+            </div>
+            <div class="block text-center text-sm text-gray-400 mt-4 pt-4 border-t">
+                Blame Dave
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+
+<style>
+/* Previous styles remain the same */
+.scroll-indicator {
+    transition: opacity 0.3s ease;
+    opacity: 0.8;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.achievement-tabs {
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.achievement-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.achievement-tabs.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+.achievement-tabs > div {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.achievement-tab {
+    background-color: #f3f4f6;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.achievement-tab.active {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.achievement-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.achievement-content.active {
+    display: block;
+    opacity: 1;
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+</style>
+
+<!-- Updated Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabContainer = document.querySelector('.achievement-tabs');
+        const tabs = document.querySelectorAll('.achievement-tab');
+        const leftIndicator = document.querySelector('.scroll-indicator.left');
+        const rightIndicator = document.querySelector('.scroll-indicator.right');
+        
+        let isMouseOver = false;
+        let isDown = false;
+        let scrollInterval;
+        let startX;
+        let scrollLeft;
+        const SCROLL_SPEED = 1; // Pixels per tick
+        const SCROLL_INTERVAL = 30; // Milliseconds between ticks
+    
+        function updateIndicators() {
+            const scrollPosition = tabContainer.scrollLeft;
+            const maxScroll = tabContainer.scrollWidth - tabContainer.clientWidth;
+            
+            leftIndicator.style.display = scrollPosition > 20 ? 'flex' : 'none';
+            rightIndicator.style.display = scrollPosition < maxScroll - 20 ? 'flex' : 'none';
+        }
+    
+        function resetScroll() {
+            if (tabContainer.scrollLeft >= tabContainer.scrollWidth / 2) {
+                tabContainer.scrollLeft = 0;
+            }
+        }
+    
+        function startAutoScroll() {
+            // Clear any existing interval first
+            clearInterval(scrollInterval);
+            
+            scrollInterval = setInterval(() => {
+                if (!isMouseOver && !isDown) {
+                    if (tabContainer.scrollLeft >= (tabContainer.scrollWidth / 2) - 20) {
+                        tabContainer.scrollLeft = 0;
+                    } else {
+                        tabContainer.scrollLeft += SCROLL_SPEED;
+                    }
+                    updateIndicators();
+                }
+            }, SCROLL_INTERVAL);
+        }
+    
+        // Initialize auto-scroll
+        startAutoScroll();
+    
+        // Mouse enter/leave events
+        tabContainer.addEventListener('mouseenter', () => {
+            isMouseOver = true;
+            clearInterval(scrollInterval);
+        });
+    
+        tabContainer.addEventListener('mouseleave', () => {
+            isMouseOver = false;
+            if (!isDown) {
+                startAutoScroll();
+            }
+        });
+    
+        // Tab click handling
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // Stop propagation to prevent other handlers
+                e.stopPropagation();
+                
+                if (!tabContainer.classList.contains('dragging')) {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and its clone
+                    const tabType = tab.getAttribute('data-tab');
+                    document.querySelectorAll(`.achievement-tab[data-tab="${tabType}"]`).forEach(t => {
+                        t.classList.add('active');
+                    });
+    
+                    // Update content visibility
+                    document.querySelectorAll('.achievement-content').forEach(content => {
+                        content.classList.remove('active');
+                        content.classList.add('hidden');
+                    });
+    
+                    const contentId = `${tabType}-content`;
+                    const content = document.getElementById(contentId);
+                    if (content) {
+                        content.classList.remove('hidden');
+                        content.classList.add('active');
+                    }
+                }
+            });
+        });
+    
+        // Scroll Indicators click events
+        leftIndicator.addEventListener('click', () => {
+            clearInterval(scrollInterval);
+            tabContainer.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+            setTimeout(startAutoScroll, 1000);
+        });
+    
+        rightIndicator.addEventListener('click', () => {
+            clearInterval(scrollInterval);
+            tabContainer.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+            setTimeout(startAutoScroll, 1000);
+        });
+    
+        // Mouse Events for dragging
+        tabContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            tabContainer.classList.add('dragging');
+            startX = e.pageX - tabContainer.offsetLeft;
+            scrollLeft = tabContainer.scrollLeft;
+            clearInterval(scrollInterval);
+        });
+    
+        window.addEventListener('mouseup', () => {
+            isDown = false;
+            tabContainer.classList.remove('dragging');
+            if (!isMouseOver) {
+                startAutoScroll();
+            }
+        });
+    
+        tabContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - tabContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            tabContainer.scrollLeft = scrollLeft - walk;
+            updateIndicators();
+        });
+    
+        // Touch Events
+        tabContainer.addEventListener('touchstart', (e) => {
+            isDown = true;
+            tabContainer.classList.add('dragging');
+            startX = e.touches[0].pageX - tabContainer.offsetLeft;
+            scrollLeft = tabContainer.scrollLeft;
+            clearInterval(scrollInterval);
+        });
+    
+        tabContainer.addEventListener('touchend', () => {
+            isDown = false;
+            tabContainer.classList.remove('dragging');
+            startAutoScroll();
+        });
+    
+        tabContainer.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - tabContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            tabContainer.scrollLeft = scrollLeft - walk;
+            updateIndicators();
+        });
+    
+        // Scroll event listener
+        tabContainer.addEventListener('scroll', () => {
+            updateIndicators();
+            resetScroll();
+        });
+    
+        // Initial update of indicators
+        updateIndicators();
+    });
+    </script>
+<!-- Achievement Section END -->
+
+<!-- Add new Care Section after features -->
+<section class="py-16 bg-gradient-to-r from-purple-50 to-purple-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Silent Gaming Community</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Join thousands of ninja gamers mastering the art of stealth gaming.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Free Tools Card -->
+            <div class="feature-card text-center">
+                <div class="text-4xl mb-4">🛠️</div>
+                <h3 class="text-xl font-bold mb-2">Free Stealth Tools</h3>
+                <p class="text-gray-600 mb-4">Essential tools for every ninja gamer's arsenal.</p>
+                <div class="space-y-2 text-sm text-gray-500 mb-4">
+                    <div>• Click Risk Calculator</div>
+                    <div>• Rage Excuse Generator</div>
+                    <div>• Homework Alibi Creator</div>
+                </div>
+                <a href="tools.html" class="inline-block text-purple-600 hover:text-purple-700 font-semibold transition-colors">
+                    Access Tools →
+                </a>
+            </div>
+
+            <!-- Community Card -->
+            <div class="feature-card text-center">
+                <div class="text-4xl mb-4">👥</div>
+                <h3 class="text-xl font-bold mb-2">Growing Community</h3>
+                <p class="text-gray-600 mb-4">Join fellow stealth gamers sharing their ninja ways.</p>
+                <div class="space-y-2 mb-4">
+                    <div class="text-2xl font-bold text-purple-600">50,000+</div>
+                    <div class="text-sm text-gray-500">Silent Gamers Strong</div>
+                </div>
+                <div class="text-sm text-gray-500">
+                    Daily growing stronger & quieter
+                </div>
+            </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this to your existing style section -->
+<style>
+/* Mobile menu animations */
+#mobileMenu {
+    transition: all 0.3s ease-in-out;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(124, 58, 237, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.2);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#mobileMenu:not(.hidden) {
+    animation: slideIn 0.3s ease-out;
+}
+</style>
+
+<!-- Add this to your existing script section -->
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const menuButton = document.querySelector('.md\\:hidden button');
+    
+    if (!menuButton.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+    }
+});
+
+// Close mobile menu on window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768) {
+        document.getElementById('mobileMenu').classList.add('hidden');
+    }
+});
+</script>
+
+
+<!-- Testimonials -->
+
+
+<section class="py-16 bg-purple-50">
+    <div class="container">
+        <h2 class="text-3xl font-bold text-center mb-12">Suspiciously Specific Reviews</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Reviews Card -->
+            <div class="feature-card text-center">
+                <div class="text-4xl mb-4">⭐</div>
+                <h3 class="text-xl font-bold mb-2">Ninja Reviews</h3>
+                <div class="space-y-4">
+                    <div class="text-sm italic text-gray-600">
+                        "Finally beat Elden Ring at 3 AM without waking anyone!"
+                        <div class="font-semibold text-gray-800 mt-1">- SneakyGamer42</div>
+                    </div>
+                    <div class="text-sm italic text-gray-600">
+                        "The excuse generator saved my gaming session!"
+                        <div class="font-semibold text-gray-800 mt-1">- NinjaClicker</div>
+                    </div>
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">🎮</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Dave "The Night Raider" Johnson</h3>
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"My wife used to throw pillows at me for late-night gaming. Now she throws them because she can't find me. Progress! 10/10 would sneak again."</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">📚</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Sarah "Library Lurker" Smith</h3>
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"I can finally play Cookie Clicker in the library without getting death stares. Though people are concerned about my aggressive silent finger movements."</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">👔</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Mike "Meeting Multitasker" Wilson</h3>
+                        <div class="text-yellow-400">★★★★½</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Finally reached Diamond rank during quarterly budget meetings. My boss thinks I'm taking very detailed notes. Lost half star because my victory dance gave me away."</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">🐱</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Mr. Whiskers</h3>
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Meow meow meow (My human finally stopped waking me up with their clicking. Now I have to find new reasons to knock things off the desk.)"</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">🎧</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Alex "Streamer Dreams" Thompson</h3>
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"My ASMR gaming stream is finally possible! Although viewers keep asking if my mouse is broken because they can't hear me clicking."</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="flex items-start mb-4">
+                    <div class="text-4xl">👶</div>
+                    <div class="ml-4">
+                        <h3 class="font-semibold">Parent of 3</h3>
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Finally beat Elden Ring during naptime! Though I had to explain to my spouse why I was silently rage-crying in the gaming room."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Silent Click Counter -->
+<section class="py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+    <div class="container text-center">
+        <h2 class="text-3xl font-bold mb-8">The Silent Revolution</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="text-4xl font-bold mb-2">1,234,567,890</div>
+                <p>Clicks Silenced</p>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-purple-600 mb-2">42,069</div>
+                <div class="text-sm text-gray-600">Relationships Saved</div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-purple-600 mb-2">347</div>
+                <div class="text-sm text-gray-600">Arguments Avoided</div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-purple-600 mb-2">8.2GB</div>
+                <div class="text-sm text-gray-600">Noise Pollution Prevented</div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-purple-600 mb-2">42</div>
+                <div class="text-sm text-gray-600">Cats Still Suspicious</div>
+            </div>
+            <div class="stat-card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl font-bold text-purple-600 mb-2">∞</div>
+                <div class="text-sm text-gray-600">Excuses Generated</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Not-So-Silent Disclaimer -->
+<section class="py-8 bg-gray-100">
+    <div class="container">
+        <div class="text-center text-sm text-gray-600">
+            <p class="mb-2">* Results may vary. Side effects may include:</p>
+            <p>Suspicious looks from family members, unexplained ninja-like reflexes,</p>
+            <p>and a strange urge to shush loud mouse users in public.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-2">How does the click counting work?</h3>
+                    <p class="text-gray-600">Our advanced software tracks your mouse clicks in real-time, ensuring accurate usage monitoring without impacting performance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-2">What happens if I run out of silent clicks?</h3>
+                    <p class="text-gray-600">Your mouse won't suddenly start screaming, but it will lose its ninja powers. We'll warn you when you're running low on silence.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-2">Can I transfer unused clicks to next month?</h3>
+                    <p class="text-gray-600">Silence is golden, but it doesn't roll over. Use them or lose them! Think of it as motivation to click more (quietly).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="text-3xl font-bold mb-4">Ready to Embrace the Silence?</h2>
+            <p class="text-xl mb-8">Join thousands of satisfied ninjas who've made the switch to silent clicking.</p>
+            <button onclick="openCheckout('pro')" class="bg-purple-600 text-white py-3 px-6 rounded-lg text-lg hover:bg-purple-700 transition-colors">
+                Start Your Silent Journey
+              </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-4">SilentClick™ - Making the World a Quieter Place, One Click at a Time</p>
+            <p class="text-sm opacity-75">© 2024 SilentClick. All rights silently reserved.</p>
+        </div>
+    </footer>
+
+<!-- Add this right before the closing body tag -->
+
+<div id="checkoutModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="modal-content bg-white p-8 rounded-lg max-w-md w-full mx-4">
+      <div class="text-right">
+        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">&times;</button>
+      </div>
+      
+      <div id="step1" class="step">
+        <h2 class="text-2xl font-bold mb-4">Complete Your Order</h2>
+        <p class="mb-4">Plan: <span id="selectedPlan" class="font-semibold"></span></p>
+        <p class="mb-4">Monthly Price: $<span id="selectedPrice"></span></p>
+        
+        <form id="checkoutForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input type="email" required class="w-full p-2 border rounded" placeholder="your@email.com">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Full Name</label>
+            <input type="text" required class="w-full p-2 border rounded" placeholder="John Doe">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Company (Optional)</label>
+            <input type="text" class="w-full p-2 border rounded" placeholder="Company Name">
+          </div>
+          <button type="submit" class="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700">
+            Complete Order
+          </button>
+        </form>
+      </div>
+      
+      <div id="step2" class="step hidden">
+        <div class="text-center">
+          <div class="text-green-500 text-5xl mb-4">✓</div>
+          <h2 class="text-2xl font-bold mb-4">Order Confirmed!</h2>
+          <p class="mb-4">Your silent clicks will be ready in moments.</p>
+          <p class="text-sm text-gray-600 mb-4">You will receive an invoice at the end of the month.</p>
+          <button onclick="closeModal()" class="bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700">
+            Start Clicking Silently
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal.show {
+    display: flex;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 32rem;
+    width: 90%;
+    margin: 0 1rem;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .step {
+    transition: all 0.3s ease;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  </style>
+  
+  <script>
+  const plans = {
+    basic: {
+      name: "Ninja Trainee",
+      price: "12.99",
+      clicks: "12,000"
+    },
+    pro: {
+      name: "Stealth Master",
+      price: "19.99",
+      clicks: "25,000"
+    },
+    elite: {
+      name: "Silent Assassin",
+      price: "29.99",
+      clicks: "Unlimited"
+    }
+  };
+  
+  function openCheckout(planType) {
+    const modal = document.getElementById('checkoutModal');
+    const planName = document.getElementById('selectedPlan');
+    const planPrice = document.getElementById('selectedPrice');
+    
+    planName.textContent = plans[planType].name;
+    planPrice.textContent = plans[planType].price;
+    
+    modal.classList.add('show');
+  }
+  
+  function closeModal() {
+    const modal = document.getElementById('checkoutModal');
+    modal.classList.remove('show');
+    // Reset to step 1
+    document.getElementById('step1').classList.remove('hidden');
+    document.getElementById('step2').classList.add('hidden');
+  }
+  
+  document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Hide step 1, show step 2
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+  });
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('checkoutModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+  </script>
+</body>
+</html>
