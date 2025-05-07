@@ -3,32 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to SeedOfAnarky</title>
+    <title>Launch Sequence</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Lottie Player Library -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #0a0a0a;
+            background-color: #11161d; /* Dark background color */
             color: white;
+            font-family: monospace; /* Changed to monospace for the morse code display */
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #00ff00, #007700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glitch 1.5s infinite;
-        }
-        @keyframes glitch {
-            0% {
-                text-shadow: 2px 2px 1px #00ff00;
-            }
-            50% {
-                text-shadow: -2px -2px 1px #007700;
-            }
-            100% {
-                text-shadow: 2px 2px 1px #00ff00;
-            }
-        }
+        
         .splash-container {
             height: 100vh;
             display: flex;
@@ -38,6 +25,7 @@
             position: relative;
             flex-direction: column;
         }
+        
         #background {
             position: absolute;
             top: 0;
@@ -46,71 +34,318 @@
             height: 100%;
             z-index: -1;
         }
+        
+        .text-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Fullscreen lottie container */
+        .lottie-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none; /* Allow clicking through the animation */
+        }
+        
+        /* Ensure the lottie player takes up full space */
+        lottie-player {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Content container to make text visible over the animation */
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(17, 22, 29, 0.4);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px rgba(0, 255, 187, 0.2);
+        }
+        
+        /* Countdown timer style */
+        .countdown {
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #00ffbb;
+            text-shadow: 0 0 15px rgba(0, 255, 187, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        /* Launch message style */
+        .launch-message {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ff3366;
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.9);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Morse code message style */
+        .morse-message {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00ffbb;
+            text-shadow: 0 0 15px rgba(0, 255, 187, 0.7);
+            margin-top: 2rem;
+            letter-spacing: 0.1em;
+            display: none; /* Hidden initially */
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid #00ffbb;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        /* Typing effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        /* Cursor blink effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ffbb; }
+        }
+        
+        .content-hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .content-visible {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Full screen morse code overlay */
+        .morse-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #11161d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 0s linear 1s;
+        }
+        
+        .morse-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease;
+        }
+        
+        .morse-code {
+            font-size: 3rem;
+            color: #00ffbb;
+            text-shadow: 0 0 15px rgba(0, 255, 187, 0.7);
+            max-width: 90%;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
     </style>
 </head>
 <body>
     <canvas id="background"></canvas>
+    
+    <!-- Fullscreen Lottie animation using local Animation.json file -->
+    <div class="lottie-container">
+        <lottie-player 
+            id="rocketAnimation"
+            src="Animation.json" 
+            background="transparent" 
+            speed="1">
+        </lottie-player>
+    </div>
+    
     <div class="splash-container">
-        <div>
-            <h1 class="gradient-text text-6xl mb-8">SeedOfAnarky</h1>
-            <p class="text-xl mb-4">Breaker of Codes. Maker of Systems.</p>
-            <button onclick="window.location.href='https://seedofanarky.github.io/projects/SeedOfAnarkyPatched'" class="btn">
-                Enter the Chaos
-            </button>
+        <div class="content-overlay content-visible" id="mainContent">
+            <div id="countdownContainer">
+                <div class="countdown" id="countdown">3</div>
+                <div class="launch-message" id="launchMessage">LAUNCH!</div>
+            </div>
+            <p class="text-subtitle">Breaker of Codes. Maker of Systems.</p>
         </div>
     </div>
-
+    
+    <!-- Morse code overlay that will be shown after animation completes -->
+    <div class="morse-overlay" id="morseOverlay">
+        <div class="morse-code">.-- . .-.. -.-. --- -- . / - --- / - .... . / -.. .- .-. -.- ... .. -.. .</div>
+    </div>
+    
     <script>
+        // Canvas setup for star background
         const canvas = document.getElementById('background');
         const ctx = canvas.getContext('2d');
-
+        
+        // Set canvas to full window size
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const dotSize = 2;
-        const dotSpacing = 30;
-        const dots = [];
-        let blinkSpeed = 100; // You can adjust this value to control speed
-
-        for (let y = 0; y < canvas.height; y += dotSpacing) {
-            for (let x = 0; x < canvas.width; x += dotSpacing) {
-                if (Math.random() < 0.5) {
-                    dots.push({ x, y, blink: Math.random() < 0.1 });
-                }
-            }
-        }
-
-        function drawDots() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            dots.forEach(dot => {
-                ctx.fillStyle = dot.blink ? (Math.random() < 0.2 ? "#00ff00" : "#003300") : "#003300";
-                ctx.fillRect(dot.x, dot.y, dotSize, dotSize);
-
-                if (Math.random() < 0.002) dot.blink = !dot.blink;
-
-                if (Math.random() < 0.0001) {
-                    ctx.font = "10px monospace";
-                    ctx.fillStyle = "#00ff00";
-                    ctx.fillText("F12", dot.x, dot.y);
-                }
+        
+        // Create stars (similar to Netlify's small dots)
+        const stars = [];
+        // Calculate number of stars based on screen size for consistent density
+        const numStars = Math.floor((canvas.width * canvas.height) / 5000); // One star per 5000 pixels
+        
+        // Create initial stars - ensure they're distributed evenly
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 1.5 + 0.5, // Size between 0.5 and 2 pixels
+                opacity: Math.random() * 0.5 + 0.1, // Initial opacity
+                fadeSpeed: Math.random() * 0.002 + 0.0005, // Very slow fade
+                fadeDirection: Math.random() > 0.5 ? 1 : -1
             });
-            setTimeout(drawDots, blinkSpeed);
         }
-
-        drawDots();
-
+        
+        // Animation function
+        function animate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw each star
+            stars.forEach(star => {
+                // Update opacity with fade
+                star.opacity += star.fadeSpeed * star.fadeDirection;
+                
+                // Reverse direction when reaching opacity limits
+                if (star.opacity >= 0.7) {
+                    star.fadeDirection = -1;
+                } else if (star.opacity <= 0.1) {
+                    star.fadeDirection = 1;
+                }
+                
+                // Draw the star (a small circle)
+                ctx.fillStyle = `rgba(58, 235, 219, ${star.opacity})`; // Teal color
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Continue animation
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+        
+        // Handle window resizing - redistribute stars when window size changes
         window.addEventListener('resize', () => {
+            // Update canvas dimensions
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            
+            // Recalculate number of stars based on new screen size
+            const newNumStars = Math.floor((canvas.width * canvas.height) / 5000);
+            
+            // If we need more stars than we currently have
+            if (newNumStars > stars.length) {
+                const starsToAdd = newNumStars - stars.length;
+                for (let i = 0; i < starsToAdd; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 1.5 + 0.5,
+                        opacity: Math.random() * 0.5 + 0.1,
+                        fadeSpeed: Math.random() * 0.002 + 0.0005,
+                        fadeDirection: Math.random() > 0.5 ? 1 : -1
+                    });
+                }
+            } else {
+                // If we need fewer stars, just keep the first newNumStars
+                stars.length = newNumStars;
+            }
         });
-
-        // Secret Morse Code Message
-        setTimeout(() => {
-            console.log(".-- . .-.. -.-. --- -- . / - --- / - .... . / -.. .- .-. -.- ... .. -.. .");
-        }, 5000);
-
-        // You can change the speed by running in the console:
-        // blinkSpeed = 200; (or any value you want)
+        
+        // Countdown and launch sequence elements
+        const countdownElement = document.getElementById('countdown');
+        const launchMessage = document.getElementById('launchMessage');
+        const mainContent = document.getElementById('mainContent');
+        const rocketAnimation = document.getElementById('rocketAnimation');
+        const morseOverlay = document.getElementById('morseOverlay');
+        
+        // Initially the animation is paused
+        rocketAnimation.pause();
+        
+        // Start countdown immediately when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            startCountdown();
+        });
+        
+        function startCountdown() {
+            // Start countdown
+            let count = 3;  // 3-second countdown
+            countdownElement.textContent = count;
+            
+            const countdownInterval = setInterval(() => {
+                count--;
+                
+                if (count === 0) {
+                    // Stop countdown
+                    clearInterval(countdownInterval);
+                    
+                    // Show LAUNCH message
+                    countdownElement.style.display = 'none';
+                    launchMessage.style.opacity = '1';
+                    
+                    // Start rocket animation
+                    rocketAnimation.play();
+                    
+                    // Listen for when the animation completes
+                    rocketAnimation.addEventListener('complete', function() {
+                        // Animation has finished, show morse code
+                        showMorseCode();
+                    });
+                    
+                    // Fade out content after launch
+                    setTimeout(() => {
+                        // Fade out content
+                        mainContent.classList.remove('content-visible');
+                        mainContent.classList.add('content-hidden');
+                    }, 2000); // Wait 2 seconds after launch message
+                } else {
+                    // Update countdown
+                    countdownElement.textContent = count;
+                }
+            }, 1000);
+        }
+        
+        function showMorseCode() {
+            // Show the morse code overlay
+            morseOverlay.classList.add('show');
+            
+            // Optional: Add Morse code audio beeps
+            // playMorseAudio();
+        }
+        
+        // Call startCountdown as soon as window loads
+        window.onload = startCountdown;
     </script>
 </body>
 </html>
