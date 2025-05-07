@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SeedOfAnarky</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            color: white;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #00ff00, #007700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glitch 1.5s infinite;
+        }
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px 1px #00ff00;
+            }
+            50% {
+                text-shadow: -2px -2px 1px #007700;
+            }
+            100% {
+                text-shadow: 2px 2px 1px #00ff00;
+            }
+        }
+        .splash-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            flex-direction: column;
+        }
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background"></canvas>
+    <div class="splash-container">
+        <div>
+            <h1 class="gradient-text text-6xl mb-8">SeedOfAnarky</h1>
+            <p class="text-xl mb-4">Breaker of Codes. Maker of Systems.</p>
+            <button onclick="window.location.href='https://seedofanarky.github.io/projects/SeedOfAnarkyPatched'" class="btn">
+                Enter the Chaos
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('background');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const dotSize = 2;
+        const dotSpacing = 30;
+        const dots = [];
+        let blinkSpeed = 100; // You can adjust this value to control speed
+
+        for (let y = 0; y < canvas.height; y += dotSpacing) {
+            for (let x = 0; x < canvas.width; x += dotSpacing) {
+                if (Math.random() < 0.5) {
+                    dots.push({ x, y, blink: Math.random() < 0.1 });
+                }
+            }
+        }
+
+        function drawDots() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach(dot => {
+                ctx.fillStyle = dot.blink ? (Math.random() < 0.2 ? "#00ff00" : "#003300") : "#003300";
+                ctx.fillRect(dot.x, dot.y, dotSize, dotSize);
+
+                if (Math.random() < 0.002) dot.blink = !dot.blink;
+
+                if (Math.random() < 0.0001) {
+                    ctx.font = "10px monospace";
+                    ctx.fillStyle = "#00ff00";
+                    ctx.fillText("F12", dot.x, dot.y);
+                }
+            });
+            setTimeout(drawDots, blinkSpeed);
+        }
+
+        drawDots();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Secret Morse Code Message
+        setTimeout(() => {
+            console.log(".-- . .-.. -.-. --- -- . / - --- / - .... . / -.. .- .-. -.- ... .. -.. .");
+        }, 5000);
+
+        // You can change the speed by running in the console:
+        // blinkSpeed = 200; (or any value you want)
+    </script>
+</body>
+</html>
